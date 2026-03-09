@@ -1,111 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login — SMS Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login to SMS Dashboard">
+    <title>Login — SMS Dashboard</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
 
 <body class="login-page">
 
-<div class="login-card">
+    <div class="login-card">
 
-<div class="login-brand">
-<span class="login-brand-name">SMS Dashboard</span>
-</div>
+        <!-- Brand -->
+        <div class="login-brand">
+            <span class="login-brand-name">SMS Dashboard</span>
+        </div>
 
-<div class="login-heading">
-<h1>Welcome back</h1>
-<p>Sign in to your account to continue</p>
-</div>
+        <!-- Heading -->
+        <div class="login-heading">
+            <h1>Welcome back</h1>
+            <p>Sign in to your account to continue</p>
+        </div>
 
-@if(session('error'))
-<div class="login-alert error show">
-{{ session('error') }}
-</div>
-@endif
+        <!-- Global error message (from session / redirect) -->
+        @if (session('error'))
+            <div class="login-alert error show">
+                {{ session('error') }}
+            </div>
+        @endif
 
-<form method="POST" action="{{ route('login') }}">
-@csrf
+        <!-- Main Login Form -->
+        <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-<!-- Email -->
-<div class="login-field">
-<label>Email Address</label>
+    <div class="login-field">
+        <label for="email">Email Address</label>
+        <div class="login-input-wrap">
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="you@example.com" 
+                value="{{ old('email') }}" 
+                required 
+                autofocus
+            >
+        </div>
+        @error('email')
+            <span class="login-error">{{ $message }}</span>
+        @enderror
+    </div>
 
-<div class="login-input-wrap">
-<input type="email" name="email" placeholder="you@example.com" required>
-</div>
+    <div class="login-field">
+        <label for="password">Password</label>
+        <div class="login-input-wrap">
+            <input 
+                type="password" 
+                id="password" 
+                name="password" 
+                placeholder="••••••••" 
+                required
+            >
+        </div>
 
-</div>
+        @error('password')
+            <span class="login-error">{{ $message }}</span>
+        @enderror
+    </div>
 
-<!-- Password -->
-<div class="login-field">
-<label>Password</label>
+    <div class="login-meta">
+        <label class="login-remember">
+            <input type="checkbox" name="remember">
+            <span>Keep me signed in</span>
+        </label>
+    </div>
 
-<div class="login-input-wrap">
-<input type="password" name="password" id="password" placeholder="••••••••" required>
-
-<button class="login-toggle-pass" onclick="togglePass()" type="button">
-👁
-</button>
-
-</div>
-</div>
-
-<!-- Remember + Forgot -->
-<div class="login-meta">
-
-<label class="login-remember">
-<input type="checkbox" name="remember">
-<span>Keep me signed in</span>
-</label>
-
-<a href="{{ route('password.request') }}" class="login-forgot">
-Forgot password?
-</a>
-
-</div>
-
-<!-- Submit -->
-<button class="login-btn" type="submit">
-Sign In
-</button>
-
+    <button class="login-btn" type="submit">
+        Sign In
+    </button>
 </form>
 
-<div class="login-divider">
-<div class="login-divider-line"></div>
-<span>or</span>
-<div class="login-divider-line"></div>
-</div>
+        <!-- Divider + Signup Link -->
+        <div class="login-divider">
+            <div class="login-divider-line"></div>
+            <span>or</span>
+            <div class="login-divider-line"></div>
+        </div>
 
-<p class="login-signup">
-Don't have an account?
-<a href="{{ route('register') }}">Create one</a>
-</p>
+        <p class="login-signup">
+            Don't have an account?
+            @if (Route::has('register'))
+                <a href="{{ route('register') }}">Create one</a>
+            @else
+                <a href="#">Contact support</a>
+            @endif
+        </p>
 
-</div>
+    </div>
 
-<script>
+    <!-- JavaScript for Password Toggle -->
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleButton = document.querySelector('.login-toggle-pass');
 
-function togglePass() {
-
-let password = document.getElementById("password");
-
-if(password.type === "password"){
-password.type = "text";
-}
-else{
-password.type = "password";
-}
-
-}
-
-</script>
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                // toggleButton.innerHTML = '🙈'; // optional: change emoji
+                // Or with Font Awesome: document.getElementById('eye-icon').classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                // toggleButton.innerHTML = '👁️';
+                // Or with Font Awesome: document.getElementById('eye-icon').classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
 
 </body>
 </html>

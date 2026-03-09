@@ -17,16 +17,13 @@ use App\Http\Controllers\ResultController;
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-Route::get('/', [AuthController::class,'login']);
-Route::get('/login', [AuthController::class,'login'])->name('login');
-Route::post('/login', [AuthController::class,'check'])->name('login.check');
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
 Route::get('/forgot-password', [ForgotPasswordController::class,'show'])->name('password.request');
 Route::post('/forgot-password', [ForgotPasswordController::class,'send'])->name('password.email');
 Route::get('/register', [RegisterController::class,'show'])->name('register');
 Route::post('/register', [RegisterController::class,'store']);
-Route::get('/dashboard', [DashboardController::class,'index']);
+Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard')->middleware('auth');
 Route::resource('schools', SchoolController::class);
 Route::resource('students', StudentController::class);
 Route::resource('teachers', TeacherController::class);
@@ -34,6 +31,5 @@ Route::resource('subjects', SubjectController::class);
 Route::resource('attendances', AttendanceController::class);
 Route::resource('exams', ExamController::class);
 Route::resource('results', ResultController::class);
-
 
 

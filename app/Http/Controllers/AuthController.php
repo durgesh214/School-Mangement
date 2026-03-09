@@ -8,19 +8,14 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-    // Login Page
-    public function login()
+    // Show Login Page
+    public function showLogin()
     {
-        if (Auth::check()) {
-            return redirect()->route('dashboard');
-        }
-
         return view('auth.login');
     }
 
-
-    // Login Check
-    public function check(Request $request)
+    // Handle Login
+    public function login(Request $request)
     {
 
         $request->validate([
@@ -40,9 +35,7 @@ class AuthController extends Controller
         }
 
         return back()->with('error','Email or Password incorrect');
-
     }
-
 
     // Logout
     public function logout(Request $request)
