@@ -29,14 +29,14 @@
             <p>Sign in to your account to continue</p>
         </div>
 
-        <!-- Global error message (from session / redirect) -->
+        
         @if (session('error'))
             <div class="login-alert error show">
                 {{ session('error') }}
             </div>
         @endif
 
-        <!-- Main Login Form -->
+       
         <form method="POST" action="{{ route('login') }}">
         @csrf
 
@@ -87,7 +87,7 @@
     </button>
 </form>
 
-        <!-- Divider + Signup Link -->
+       
         <div class="login-divider">
             <div class="login-divider-line"></div>
             <span>or</span>
@@ -105,7 +105,7 @@
 
     </div>
 
-    <!-- JavaScript for Password Toggle -->
+    
     <script>
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('password');
@@ -113,12 +113,10 @@
 
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                // toggleButton.innerHTML = '🙈'; // optional: change emoji
-                // Or with Font Awesome: document.getElementById('eye-icon').classList.replace('fa-eye', 'fa-eye-slash');
+              
             } else {
                 passwordInput.type = 'password';
-                // toggleButton.innerHTML = '👁️';
-                // Or with Font Awesome: document.getElementById('eye-icon').classList.replace('fa-eye-slash', 'fa-eye');
+                
             }
         }
     </script>

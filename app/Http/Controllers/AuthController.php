@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
 
-    // Show Login Page
+    
     public function showLogin()
     {
         return view('auth.login');
     }
 
-    // Handle Login
+    
     public function login(Request $request)
     {
 
@@ -37,7 +37,7 @@ class AuthController extends Controller
         return back()->with('error','Email or Password incorrect');
     }
 
-    // Logout
+   
     public function logout(Request $request)
     {
 

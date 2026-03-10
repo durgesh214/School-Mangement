@@ -21,6 +21,7 @@ class LoginController extends Controller
         if($email == "admin@gmail.com" && $password == "123456")
         {
             return redirect('/dashboard');
+            
         }
         else
         {
