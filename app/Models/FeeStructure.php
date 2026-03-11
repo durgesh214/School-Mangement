@@ -5,20 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Timetable extends Model
+class FeeStructure extends Model
 {
     use HasFactory;
 
-    protected $table = 'timetables';
+    protected $table = 'fee_structures';
 
     protected $fillable = [
+        'fee_title',
         'class_name',
-        'section',
-        'subject',
-        'teacher',
-        'day',
-        'start_time',
-        'end_time',
-        'room_no',
+        'term',
+        'amount',
+        'due_date',
+        'status',
     ];
 }

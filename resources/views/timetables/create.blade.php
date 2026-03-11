@@ -2,13 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Class</title>
+    <title>Add Timetable</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; padding: 40px; }
-
         .card {
-            background: #fff; max-width: 580px; margin: 0 auto;
+            background: #fff; max-width: 620px; margin: 0 auto;
             border-radius: 16px; padding: 36px;
             box-shadow: 0 8px 30px rgba(0,0,0,0.10);
         }
@@ -17,29 +16,23 @@
             justify-content: space-between; margin-bottom: 28px;
         }
         .card-header h2 { font-size: 24px; font-weight: 800; color: #0f172a; }
-
         .btn-back {
             background: #f1f5f9; color: #334155; border: none;
             padding: 9px 18px; border-radius: 8px;
             font-size: 13px; font-weight: 600; text-decoration: none;
         }
         .btn-back:hover { background: #e2e8f0; }
-
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
         .form-group { display: flex; flex-direction: column; }
         .form-group.full { grid-column: 1 / -1; }
-
         label { font-weight: 600; font-size: 13px; color: #475569; margin-bottom: 6px; }
-
-        input {
+        input, select {
             padding: 10px 13px; border: 1.5px solid #e2e8f0;
             border-radius: 8px; font-size: 14px;
-            color: #1e293b; outline: none; width: 100%;
+            color: #1e293b; outline: none; width: 100%; background: #fff;
         }
-        input:focus { border-color: #2563eb; }
-
+        input:focus, select:focus { border-color: #2563eb; }
         .error { color: #ef4444; font-size: 12px; margin-top: 4px; }
-
         .btn-save {
             width: 100%; background: #2563eb; color: #fff; border: none;
             padding: 13px; border-radius: 9px; cursor: pointer;
@@ -49,22 +42,21 @@
     </style>
 </head>
 <body>
-
     <div class="card">
         <div class="card-header">
-            <h2>➕ Add New Class</h2>
-            <a href="{{ route('classes.index') }}" class="btn-back">← Back</a>
+            <h2>🗓️ Add Timetable</h2>
+            <a href="{{ route('timetables.index') }}" class="btn-back">← Back</a>
         </div>
 
-        <form action="{{ route('classes.store') }}" method="POST">
+        <form action="{{ route('timetables.store') }}" method="POST">
             @csrf
             <div class="form-grid">
 
-                <div class="form-group full">
+                <div class="form-group">
                     <label>Class Name</label>
                     <input type="text" name="class_name"
                            value="{{ old('class_name') }}"
-                           placeholder="e.g. 10th A">
+                           placeholder="e.g. 10th">
                     @error('class_name')
                         <span class="error">⚠ {{ $message }}</span>
                     @enderror
@@ -81,26 +73,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Room No.</label>
-                    <input type="text" name="room_no"
-                           value="{{ old('room_no') }}"
-                           placeholder="e.g. 101">
-                    @error('room_no')
-                        <span class="error">⚠ {{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="form-group full">
-                    <label>Teacher Name</label>
-                    <input type="text" name="teacher"
-                           value="{{ old('teacher') }}"
-                           placeholder="e.g. Mr. Sharma">
-                    @error('teacher')
-                        <span class="error">⚠ {{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div class="form-group">
                     <label>Subject</label>
                     <input type="text" name="subject"
                            value="{{ old('subject') }}"
@@ -111,19 +83,62 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Total Students</label>
-                    <input type="number" name="total_students"
-                           value="{{ old('total_students') }}"
-                           placeholder="e.g. 35" min="1">
-                    @error('total_students')
+                    <label>Teacher</label>
+                    <input type="text" name="teacher"
+                           value="{{ old('teacher') }}"
+                           placeholder="e.g. Mr. Sharma">
+                    @error('teacher')
+                        <span class="error">⚠ {{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group full">
+                    <label>Day</label>
+                    <select name="day">
+                        <option value="">-- Select Day --</option>
+                        <option value="Monday"    {{ old('day') == 'Monday'    ? 'selected' : '' }}>Monday</option>
+                        <option value="Tuesday"   {{ old('day') == 'Tuesday'   ? 'selected' : '' }}>Tuesday</option>
+                        <option value="Wednesday" {{ old('day') == 'Wednesday' ? 'selected' : '' }}>Wednesday</option>
+                        <option value="Thursday"  {{ old('day') == 'Thursday'  ? 'selected' : '' }}>Thursday</option>
+                        <option value="Friday"    {{ old('day') == 'Friday'    ? 'selected' : '' }}>Friday</option>
+                        <option value="Saturday"  {{ old('day') == 'Saturday'  ? 'selected' : '' }}>Saturday</option>
+                    </select>
+                    @error('day')
+                        <span class="error">⚠ {{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label>Start Time</label>
+                    <input type="time" name="start_time"
+                           value="{{ old('start_time') }}">
+                    @error('start_time')
+                        <span class="error">⚠ {{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label>End Time</label>
+                    <input type="time" name="end_time"
+                           value="{{ old('end_time') }}">
+                    @error('end_time')
+                        <span class="error">⚠ {{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group full">
+                    <label>Room No.</label>
+                    <input type="text" name="room_no"
+                           value="{{ old('room_no') }}"
+                           placeholder="e.g. 101">
+                    @error('room_no')
                         <span class="error">⚠ {{ $message }}</span>
                     @enderror
                 </div>
 
             </div>
-            <button type="submit" class="btn-save">💾 Save Class</button>
+            <button type="submit" class="btn-save">💾 Save Timetable</button>
         </form>
     </div>
-
 </body>
 </html>

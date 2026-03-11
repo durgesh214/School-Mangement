@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Library Book List</title>
+    <title>Timetable List</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Segoe UI', sans-serif; background: #f0f4f8; padding: 40px; }
@@ -45,25 +45,25 @@
         tbody tr:hover { background: #eff6ff; }
         tbody td { padding: 13px 18px; color: #374151; font-size: 14px; }
 
-        .badge-category {
+        .badge-class {
             background: #dbeafe; color: #1e40af;
             padding: 3px 10px; border-radius: 20px;
             font-weight: 700; font-size: 12px;
         }
-        .badge-available {
-            background: #dcfce7; color: #166534;
+        .badge-section {
+            background: #f3e8ff; color: #6b21a8;
             padding: 3px 10px; border-radius: 20px;
             font-weight: 700; font-size: 12px;
         }
-        .badge-issued {
+        .badge-day {
             background: #fef9c3; color: #854d0e;
             padding: 3px 10px; border-radius: 20px;
             font-weight: 700; font-size: 12px;
         }
-        .badge-lost {
-            background: #fee2e2; color: #991b1b;
+        .badge-time {
+            background: #dcfce7; color: #166534;
             padding: 3px 10px; border-radius: 20px;
-            font-weight: 700; font-size: 12px;
+            font-weight: 600; font-size: 12px;
         }
 
         .btn-edit {
@@ -86,10 +86,10 @@
 
     <div class="header">
         <div>
-            <h2>📚 Library Book List</h2>
-            <p>Total Books: <strong>{{ $books->count() }}</strong></p>
+            <h2>🗓️ Timetable List</h2>
+            <p>Total Entries: <strong>{{ $timetables->count() }}</strong></p>
         </div>
-        <a href="{{ route('library.create') }}" class="btn-add">+ Add Book</a>
+        <a href="{{ route('timetables.create') }}" class="btn-add">+ Add Timetable</a>
     </div>
 
     @if(session('success'))
@@ -101,40 +101,32 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Book Title</th>
-                    <th>Author</th>
-                    <th>ISBN</th>
-                    <th>Category</th>
-                    <th>Total</th>
-                    <th>Available</th>
-                    <th>Shelf No.</th>
-                    <th>Status</th>
+                    <th>Class</th>
+                    <th>Section</th>
+                    <th>Subject</th>
+                    <th>Teacher</th>
+                    <th>Day</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Room No.</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($books as $book)
+                @forelse($timetables as $timetable)
                 <tr>
-                    <td>{{ $book->id }}</td>
-                    <td><strong>{{ $book->book_title }}</strong></td>
-                    <td>{{ $book->author }}</td>
-                    <td>{{ $book->isbn }}</td>
-                    <td><span class="badge-category">{{ $book->category }}</span></td>
-                    <td>📦 {{ $book->total_copies }}</td>
-                    <td><span class="badge-available">✅ {{ $book->available_copies }}</span></td>
-                    <td>🗄️ {{ $book->shelf_no }}</td>
+                    <td>{{ $timetable->id }}</td>
+                    <td><span class="badge-class">{{ $timetable->class_name }}</span></td>
+                    <td><span class="badge-section">{{ $timetable->section }}</span></td>
+                    <td><strong>{{ $timetable->subject }}</strong></td>
+                    <td>{{ $timetable->teacher }}</td>
+                    <td><span class="badge-day">{{ $timetable->day }}</span></td>
+                    <td><span class="badge-time">🕐 {{ $timetable->start_time }}</span></td>
+                    <td><span class="badge-time">🕐 {{ $timetable->end_time }}</span></td>
+                    <td>🚪 {{ $timetable->room_no }}</td>
                     <td>
-                        @if($book->status == 'Available')
-                            <span class="badge-available">Available</span>
-                        @elseif($book->status == 'Issued')
-                            <span class="badge-issued">Issued</span>
-                        @else
-                            <span class="badge-lost">Lost</span>
-                        @endif
-                    </td>
-                    <td>
-                        <a href="{{ route('library.edit', $book->id) }}" class="btn-edit">✏️ Edit</a>
-                        <form action="{{ route('library.destroy', $book->id) }}"
+                        <a href="{{ route('timetables.edit', $timetable->id) }}" class="btn-edit">✏️ Edit</a>
+                        <form action="{{ route('timetables.destroy', $timetable->id) }}"
                               method="POST" style="display:inline"
                               onsubmit="return confirm('Delete karna chahte hain?')">
                             @csrf
@@ -146,7 +138,7 @@
                 @empty
                 <tr>
                     <td colspan="10" style="text-align:center; padding:40px; color:#94a3b8;">
-                        Koi book nahi mili. Pehle add karein!
+                        Koi timetable nahi mila. Pehle add karein!
                     </td>
                 </tr>
                 @endforelse

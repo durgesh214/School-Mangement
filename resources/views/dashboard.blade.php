@@ -88,9 +88,9 @@
       </a><a href="/library" class="sidebar-link" style="display: flex; align-items: center; gap: 16px; padding: 14px 24px; color: #cbd5e1; text-decoration: none;">
         <i class="fa fa-chart-bar" style="width: 24px; text-align: center; font-size: 1.2rem;"></i>
        Library
-      </a><a href="/timetable" class="sidebar-link" style="display: flex; align-items: center; gap: 16px; padding: 14px 24px; color: #cbd5e1; text-decoration: none;">
+      </a><a href="/timetables" class="sidebar-link" style="display: flex; align-items: center; gap: 16px; padding: 14px 24px; color: #cbd5e1; text-decoration: none;">
         <i class="fa fa-chart-bar" style="width: 24px; text-align: center; font-size: 1.2rem;"></i>
-       Timetable
+       Timetables
       </a>
 
 
