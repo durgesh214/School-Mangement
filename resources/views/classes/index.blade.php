@@ -76,14 +76,14 @@
 
     <div class="header">
         <div>
-            <h2>🏫 Class List</h2>
+            <h2> Class List</h2>
             <p>Total Classes: <strong>{{ $classes->count() }}</strong></p>
         </div>
         <a href="{{ route('classes.create') }}" class="btn-add">+ Add Class</a>
     </div>
 
     @if(session('success'))
-        <div class="alert-success">✅ {{ session('success') }}</div>
+        <div class="alert-success"> {{ session('success') }}</div>
     @endif
 
     <div class="table-wrap">
@@ -108,16 +108,16 @@
                     <td><span class="badge-section">{{ $class->section }}</span></td>
                     <td>{{ $class->teacher }}</td>
                     <td>{{ $class->subject }}</td>
-                    <td><span class="badge-students">👤 {{ $class->total_students }}</span></td>
-                    <td>🚪 {{ $class->room_no }}</td>
+                    <td><span class="badge-students"> {{ $class->total_students }}</span></td>
+                    <td> {{ $class->room_no }}</td>
                     <td>
-                        <a href="{{ route('classes.edit', $class->id) }}" class="btn-edit">✏️ Edit</a>
+                        <a href="{{ route('classes.edit', $class->id) }}" class="btn-edit"> Edit</a>
                         <form action="{{ route('classes.destroy', $class->id) }}"
                               method="POST" style="display:inline"
                               onsubmit="return confirm('Delete karna chahte hain?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-delete">🗑️ Delete</button>
+                            <button type="submit" class="btn-delete"> Delete</button>
                         </form>
                     </td>
                 </tr>

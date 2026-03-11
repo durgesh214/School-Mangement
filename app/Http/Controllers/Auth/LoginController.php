@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
-{
+{ 
 
     public function showLoginForm()
     {
@@ -23,6 +23,15 @@ class LoginController extends Controller
             return redirect('/dashboard');
             
         }
+         if ($email == "student@gmail.com" && $password == "student123")
+        {
+            return redirect('/students');
+        }
+         if ($email == "teacher@gmail.com" && $password == "teacher123")
+        {
+            return redirect('/teachers');
+        }
+
         else
         {
             return back()->with('error','Invalid Login');

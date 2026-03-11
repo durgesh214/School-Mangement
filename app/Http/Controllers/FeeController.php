@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class FeeController extends Controller
 {
-    //  List
+    
     public function index()
     {
         $fees = FeeStructure::latest()->get();
@@ -15,13 +15,13 @@ class FeeController extends Controller
         return view('fees.index', compact('fees'));
     }
 
-    //  Add Form
+    
     public function create()
     {
         return view('fees.create');
     }
 
-    //  Save
+   
     public function store(Request $request)
     {
         $request->validate([
@@ -39,14 +39,14 @@ class FeeController extends Controller
                ->with('success', 'Fee Structure successfully add ho gayi!');
     }
 
-    //  Edit Form
+    
     public function edit($id)
     {
         $fee = FeeStructure::findOrFail($id);
         return view('fees.edit', compact('fee'));
     }
 
-    //  Update
+   
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -65,7 +65,7 @@ class FeeController extends Controller
                ->with('success', 'Fee Structure successfully update ho gayi!');
     }
 
-    //  Delete
+   
     public function destroy($id)
     {
         FeeStructure::findOrFail($id)->delete();

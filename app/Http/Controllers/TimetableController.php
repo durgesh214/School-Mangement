@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 
 class TimetableController extends Controller
 {
-    // ✅ List
+   
     public function index()
     {
         $timetables = Timetable::latest()->get();
         return view('timetables.index', compact('timetables'));
     }
 
-    // ✅ Add Form
+    
     public function create()
     {
         return view('timetables.create');
     }
 
-    // ✅ Save
+   
     public function store(Request $request)
     {
         $request->validate([
@@ -40,14 +40,13 @@ class TimetableController extends Controller
                ->with('success', 'Timetable successfully add ho gaya!');
     }
 
-    // ✅ Edit Form
     public function edit($id)
     {
         $timetable = Timetable::findOrFail($id);
         return view('timetables.edit', compact('timetable'));
     }
 
-    // ✅ Update
+  
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -68,7 +67,7 @@ class TimetableController extends Controller
                ->with('success', 'Timetable successfully update ho gaya!');
     }
 
-    // ✅ Delete
+   
     public function destroy($id)
     {
         Timetable::findOrFail($id)->delete();

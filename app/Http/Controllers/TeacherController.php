@@ -7,7 +7,7 @@ use App\Models\Teacher;
 
 class TeacherController extends Controller
 {
-    // Show all teachers
+    
     public function index()
     {
         $teachers = Teacher::all();
@@ -15,13 +15,13 @@ class TeacherController extends Controller
         return view('teachers.index', compact('teachers'));
     }
 
-    // Show create form
+    
     public function create()
     {
         return view('teachers.create');
     }
 
-    // Store teacher
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -40,14 +40,14 @@ class TeacherController extends Controller
                          ->with('success','Teacher Added Successfully');
     }
 
-    // Show edit form
+   
     public function edit($id)
     {
         $teacher = Teacher::findOrFail($id);
         return view('teachers.edit', compact('teacher'));
     }
 
-    // Update teacher
+    
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -67,7 +67,7 @@ class TeacherController extends Controller
                          ->with('success','Teacher Updated Successfully');
     }
 
-    // Delete teacher
+   
     public function destroy($id)
     {
         $teacher = Teacher::findOrFail($id);

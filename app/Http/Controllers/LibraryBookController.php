@@ -7,20 +7,20 @@ use Illuminate\Http\Request;
 
 class LibraryBookController extends Controller
 {
-    // ✅ List
+   
     public function index()
     {
         $books = LibraryBook::latest()->get();
         return view('library.index', compact('books'));
     }
 
-    // ✅ Add Form
+    
     public function create()
     {
         return view('library.create');
     }
 
-    // ✅ Save
+   
     public function store(Request $request)
     {
         $request->validate([
@@ -40,14 +40,14 @@ class LibraryBookController extends Controller
                ->with('success', 'Book successfully add ho gayi!');
     }
 
-    // ✅ Edit Form
+    
     public function edit($id)
     {
         $book = LibraryBook::findOrFail($id);
         return view('library.edit', compact('book'));
     }
 
-    // ✅ Update
+    
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -68,7 +68,7 @@ class LibraryBookController extends Controller
                ->with('success', 'Book successfully update ho gayi!');
     }
 
-    // ✅ Delete
+    
     public function destroy($id)
     {
         LibraryBook::findOrFail($id)->delete();

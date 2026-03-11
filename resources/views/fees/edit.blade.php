@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+@extends('layouts.app')
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,7 +44,7 @@
 <body>
     <div class="card">
         <div class="card-header">
-            <h2>✏️ Edit Fee Structure</h2>
+            <h2>Edit Fee Structure</h2>
             <a href="{{ route('fees.index') }}" class="btn-back">← Back</a>
         </div>
 
@@ -120,7 +120,7 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn-update">✏️ Update Fee Structure</button>
+            <button type="submit" class="btn-update"> Update Fee Structure</button>
         </form>
     </div>
 </body>

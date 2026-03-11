@@ -43,7 +43,7 @@
 <body>
     <div class="card">
         <div class="card-header">
-            <h2>✏️ Edit Book</h2>
+            <h2>Edit Book</h2>
             <a href="{{ route('library.index') }}" class="btn-back">← Back</a>
         </div>
 
@@ -144,7 +144,7 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn-update">✏️ Update Book</button>
+            <button type="submit" class="btn-update"> Update Book</button>
         </form>
     </div>
 </body>

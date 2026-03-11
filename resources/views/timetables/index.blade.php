@@ -86,7 +86,7 @@
 
     <div class="header">
         <div>
-            <h2>🗓️ Timetable List</h2>
+            <h2> Timetable List</h2>
             <p>Total Entries: <strong>{{ $timetables->count() }}</strong></p>
         </div>
         <a href="{{ route('timetables.create') }}" class="btn-add">+ Add Timetable</a>
@@ -125,7 +125,7 @@
                     <td><span class="badge-time">🕐 {{ $timetable->end_time }}</span></td>
                     <td>🚪 {{ $timetable->room_no }}</td>
                     <td>
-                        <a href="{{ route('timetables.edit', $timetable->id) }}" class="btn-edit">✏️ Edit</a>
+                        <a href="{{ route('timetables.edit', $timetable->id) }}" class="btn-edit"> Edit</a>
                         <form action="{{ route('timetables.destroy', $timetable->id) }}"
                               method="POST" style="display:inline"
                               onsubmit="return confirm('Delete karna chahte hain?')">

@@ -121,7 +121,7 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn-save">💾 Save Class</button>
+            <button type="submit" class="btn-save"> Save Class</button>
         </form>
     </div>
 

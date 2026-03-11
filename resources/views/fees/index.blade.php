@@ -87,14 +87,14 @@
 
     <div class="header">
         <div>
-            <h2>💰 Fee Structure List</h2>
+            <h2> Fee Structure List</h2>
             <p>Total Fee Structures: <strong>{{ $fees->count() }}</strong></p>
         </div>
         <a href="{{ route('fees.create') }}" class="btn-add">+ Add Fee Structure</a>
     </div>
 
     @if(session('success'))
-        <div class="alert-success">✅ {{ session('success') }}</div>
+        <div class="alert-success"> {{ session('success') }}</div>
     @endif
 
     <div class="table-wrap">
@@ -119,22 +119,22 @@
                     <td><span class="badge-class">{{ $fee->class_name }}</span></td>
                     <td><span class="badge-term">{{ $fee->term }}</span></td>
                     <td><span class="amount">₹ {{ number_format($fee->amount, 2) }}</span></td>
-                    <td>📅 {{ $fee->due_date }}</td>
+                    <td> {{ $fee->due_date }}</td>
                     <td>
                         @if($fee->status == 'Active')
-                            <span class="badge-active">✅ Active</span>
+                            <span class="badge-active"> Active</span>
                         @else
-                            <span class="badge-inactive">❌ Inactive</span>
+                            <span class="badge-inactive"> Inactive</span>
                         @endif
                     </td>
                     <td>
-                        <a href="{{ route('fees.edit', $fee->id) }}" class="btn-edit">✏️ Edit</a>
+                        <a href="{{ route('fees.edit', $fee->id) }}" class="btn-edit"> Edit</a>
                         <form action="{{ route('fees.destroy', $fee->id) }}"
                               method="POST" style="display:inline"
                               onsubmit="return confirm('Delete karna chahte hain?')">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn-delete">🗑️ Delete</button>
+                            <button type="submit" class="btn-delete"> Delete</button>
                         </form>
                     </td>
                 </tr>

@@ -45,7 +45,7 @@
 <body>
     <div class="card">
         <div class="card-header">
-            <h2>💰 Add Fee Structure</h2>
+            <h2> Add Fee Structure</h2>
             <a href="{{ route('fees.index') }}" class="btn-back">← Back</a>
         </div>
 
@@ -120,7 +120,7 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn-save">💾 Save Fee Structure</button>
+            <button type="submit" class="btn-save"> Save Fee Structure</button>
         </form>
     </div>
 </body>

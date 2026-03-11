@@ -52,7 +52,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h2>✏️ Edit Class</h2>
+            <h2>Edit Class</h2>
             <a href="{{ route('classes.index') }}" class="btn-back">← Back</a>
         </div>
 
@@ -122,7 +122,7 @@
                 </div>
 
             </div>
-            <button type="submit" class="btn-update">✏️ Update Class</button>
+            <button type="submit" class="btn-update"> Update Class</button>
         </form>
     </div>
 

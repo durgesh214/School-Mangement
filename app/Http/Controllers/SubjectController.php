@@ -8,21 +8,21 @@ use App\Models\Teacher;
 
 class SubjectController extends Controller
 {
-    // Show all subjects
+    
     public function index()
     {
         $subjects = Subject::with('teacher')->get();
         return view('subjects.index', compact('subjects'));
     }
 
-    // Show create form
+    
     public function create()
     {
         $teachers = Teacher::all();
         return view('subjects.create', compact('teachers'));
     }
 
-    // Store subject
+    
     public function store(Request $request)
     {
         $request->validate([
@@ -41,7 +41,7 @@ class SubjectController extends Controller
                          ->with('success','Subject Added Successfully');
     }
 
-    // Show edit form
+   
     public function edit($id)
     {
         $subject = Subject::findOrFail($id);
@@ -50,7 +50,7 @@ class SubjectController extends Controller
         return view('subjects.edit', compact('subject','teachers'));
     }
 
-    // Update subject
+   
     public function update(Request $request, $id)
     {
         $request->validate([
@@ -71,7 +71,7 @@ class SubjectController extends Controller
                          ->with('success','Subject Updated Successfully');
     }
 
-    // Delete subject
+    
     public function destroy($id)
     {
         $subject = Subject::findOrFail($id);
